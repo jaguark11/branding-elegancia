@@ -5,11 +5,28 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Logo K</title>
   <style>
-    body{display:grid;place-items:center;min-height:100dvh;margin:0;font-family:system-ui}
-    img{width:min(70vw,420px);height:auto;outline:2px dashed rgba(0,0,0,.15);outline-offset:8px}
+    :root{color-scheme:light}
+    html,body{height:100%}
+    body{margin:0;display:grid;place-items:center;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#fff}
+    .wrap{display:grid;place-items:center;gap:.75rem}
+    img{display:block;max-width:min(80vw,460px);height:auto}
+    .hint{font-size:.9rem;opacity:.65}
+    .err{color:#c00;font-weight:600}
   </style>
 </head>
 <body>
-  <img src="assets/logo-k.png?v=3" alt="Logo K con corona (transparente)"/>
+  <div class="wrap">
+    <img id="logo" src="assets/logo-k.png?v=4" alt="Logo K (transparente)"/>
+    <div class="hint">Si no ves el logo, recarga con <b>Ctrl+F5</b>.</div>
+    <noscript class="hint">Activa JavaScript para ver avisos de error.</noscript>
+  </div>
+  <script>
+    const img = document.getElementById('logo');
+    img.onerror = () => {
+      const w = document.querySelector('.wrap');
+      w.insertAdjacentHTML('beforeend',
+        '<div class="err">No se encontró <code>assets/logo-k.png</code>. Revisa nombre/ruta y vuelve a publicar.</div>');
+    };
+  </script>
 </body>
 </html>
